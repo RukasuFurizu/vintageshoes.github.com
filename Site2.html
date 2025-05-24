@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site de vente de chaussures</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1>Sport Shoes</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a id="randomBtn">Our product</a></li>
+            <li><a href="Site7.html">About us</a></li>
+            <li><a href="Site8.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<nav class="toolbar">
+  <input type="text" placeholder="Search for shoes..." class="search-bar" id="searchInput">
+  <select class="filter" id="categoryFilter">
+    <option value="all">Category</option>
+    <option value="man">Man</option>
+    <option value="women">Women</option>
+    <option value="child">Child</option>
+  </select>
+  &nbsp;&nbsp;
+  <div class="cart">
+    <a href="Cart.html">🛒 Order</a>
+  </div>
+</nav>
+
+<main>
+    <section class="produits">
+        <div class="produit product-card" data-category="women">
+            <img src="Basketvintage1.webp">
+            <h3>Old Green Basket</h3>
+            <span>79,99 €</span>
+            <button onclick="addToCart('Old Green Basket', 79.99, 'Basketvintage1.webp')">Add on cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="man">
+            <br><br><br> 
+            <img src="jordan.webp">
+            <br><br><br>
+            <h3>Purple Basket</h3>
+            <span>259,99 €</span>
+            <button onclick="addToCart('Purple Basket', 259.99, 'jordan.webp')">Add on cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="child">
+            <img src="nike2.jpg">
+            <h3>Old Fashion Jordan</h3>
+            <span>239,99 € ⮕ 191,99 €</span>
+            <button onclick="addToCart('Old Fashion Jordan', 191.99, 'nike2.jpg')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="man">
+            <img src="90s_Basket.webp">
+            <h3>90's Basket</h3>
+            <span>159,99 €</span>
+            <button onclick="addToCart('90s Basket', 159.99, '90s_Basket.webp')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+    </section>
+    <section class="produits">
+        <div class="produit product-card" data-category="women">
+            <img src="Dance_Black_Shoes.webp">
+            <h3>Dance Black Shoes</h3>
+            <span>99,99 €</span>
+            <button onclick="addToCart('Dance Black Shoes', 99.99, 'Dance_Black_Shoes.webp')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="man">
+            <img src="Golden_Basket.webp">
+            <h3>Golden Basket</h3>
+            <span>459,99 € ⮕ 413,99€</span>
+            <button onclick="addToCart('Golden Basket', 413.99, 'Golden_Basket.webp')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="child">
+            <br><br>
+            <img src="70s_Addadas.jpg">
+            <br><br><br>
+            <h3>70's Addadas</h3>
+            <span>149,99 €</span>
+            <button onclick="addToCart('70s Addadas', 149.99, '70s_Addadas.jpg')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="women">
+            <img src="40s_First_Sport_Shoes.webp">
+            <h3>40's First Sport Shoes</h3>
+            <span>899,99 €</span>
+            <button onclick="addToCart('40s First Sport Shoes', 899.99, '40s_First_Sport_Shoes.webp')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+    </section>
+    <section class="produits">
+        <div>
+            <p>&copy; 2025 Vintage Shoes - All rights reserved</p>
+        </div>     
+    </section>
+</main>
+<script>
+    document.getElementById('searchInput').addEventListener('input', function () {
+        const filter = this.value.toLowerCase();
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            const title = product.querySelector('h3').textContent.toLowerCase();
+            if (title.includes(filter)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    });
+</script>
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const products = document.querySelectorAll('.product-card');
+
+    function filterProducts() { 
+        const searchText = searchInput.value.toLowerCase();
+        const selectedCategory = categoryFilter.value;
+
+        products.forEach(product => {
+            const title = product.querySelector('h3').textContent.toLowerCase();
+            const category = product.dataset.category;
+
+            const matchText = title.includes(searchText);
+            const matchCategory = (selectedCategory === "all" || category === selectedCategory);
+
+            product.style.display = (matchText && matchCategory) ? 'block' : 'none';
+        });
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    categoryFilter.addEventListener('change', filterProducts);
+</script>
+<script>
+    function addToCart(name, price, image) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push({ name, price, image, quantity: 1 });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        window.location.href = "Cart.html";
+    }
+    </script>
+    <script>
+  const pages = ['Site2.html', 'Site5.html', 'Site6.html'];
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * pages.length);
+    window.location.href = pages[randomIndex];
+  });
+</script>
+</body>
+</html>

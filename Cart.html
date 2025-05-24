@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart - Sport Shoes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1>Sport Shoes</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a id="randomBtn">Our product</a></li>
+            <li><a href="Site7.html">About us</a></li>
+            <li><a href="Site8.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="produits">
+        <h2>Your Cart</h2>
+        <div id="cart-container"></div>
+        <div id="total-container" style="width: 100%; text-align: right; margin-top: 20px;"></div>
+        <div style="text-align: right; margin-top: 10px;">
+            <button onclick="window.location.href='Site3.html'">Proceed to Payment</button>
+            <button onclick="clearCart()" style="margin-left: 10px; background-color: #999;">Clear Cart</button>
+        </div>
+    </section>
+</main>
+
+<script>
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const container = document.getElementById("cart-container");
+const totalContainer = document.getElementById("total-container");
+let total = 0;
+
+if (cart.length === 0) {
+    container.innerHTML = "<p>Your cart is empty.</p>";
+} else {
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        const div = document.createElement("div");
+        div.className = "produit";
+        div.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p>Quantity: ${item.quantity}</p>
+            <span>${item.price.toFixed(2)} €</span>
+        `;
+        container.appendChild(div);
+    });
+    totalContainer.innerHTML = `<p style="font-size: 20px;"><strong>Total: ${total.toFixed(2)} €</strong></p>`;
+}
+
+function clearCart() {
+    localStorage.removeItem("cart");
+    location.reload();
+}
+</script>
+<script>
+  const pages = ['Site2.html', 'Site5.html', 'Site6.html'];
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * pages.length);
+    window.location.href = pages[randomIndex];
+  });
+</script>
+</body>
+</html>

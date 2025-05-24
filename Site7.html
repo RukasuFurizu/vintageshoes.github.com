@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site de vente de chaussures</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo">
+    <h1>Confort</h1>
+  </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a id="randomBtn">Our product</a></li>
+        <li><a href="Site7.html">About us</a></li>
+        <li><a href="Site8.html">Contact</a></li>
+      </ul>
+    </nav>
+</header>
+<main>
+  <section class="presentation">
+    <h2>What about us ?</h2>
+    <ul>
+    <h3>Vintage Shoes is an online platform specializing in the sale of a wide range of footwear. While we offer all types of shoes to suit every need and style, our collection stands out for its unique selection of vintage models. Many of these shoes are no longer available on the mainstream market, allowing collectors and enthusiasts to rediscover iconic designs from the past. Whether you're searching for a rare pair or simply looking for everyday comfort, Vintage Shoes brings together variety, quality, and nostalgia in one place.</h3>
+  </ul>
+</section>
+</main>
+<footer>
+        <p>&copy; 2025 Vintage Shoes - All rights reserved</p>
+    </footer>
+<script>
+  const pages = ['Site2.html', 'Site5.html', 'Site6.html'];
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * pages.length);
+    window.location.href = pages[randomIndex];
+  });
+</script>
+</body>
+</html>

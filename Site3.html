@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Vintage Shoes</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Vintage Shoes</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="checkout">
+            <h2>Payment</h2>
+            <form class="payment-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Shipping Address</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="card">Card Number</label>
+                    <input type="text" id="card" name="card" maxlength="16" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiry">Expiration Date</label>
+                    <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" maxlength="4" required>
+                </div>
+                <button onclick="window.location.href = 'Site4.html';" onclick="clearCart()">Submit payment</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vintage Shoes - All rights reserved</p>
+    </footer>
+    <script>
+      function clearCart() {
+        localStorage.removeItem("cart");
+        location.reload();
+    }
+    </script>
+</body>
+</html>

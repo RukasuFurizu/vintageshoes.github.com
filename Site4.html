@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Site de vente de chaussures</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Vitage Shoes</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a id="randomBtn">Our product</a></li>
+                <li><a href="Site7.html">About us</a></li>
+                <li><a href="Site8.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <header>
+        <div class="logo">
+            <h1>Thank you so much for your order !<br><br></h1>
+        </div>
+    </header>
+    <br><br><br><br>
+    <div>
+        <button class="pay-button" onclick="window.location.href = 'Site.html';">Back to my shopping journey</button>
+    </div>
+    <script>
+  const pages = ['Site2.html', 'Site5.html', 'Site6.html'];
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * pages.length);
+    window.location.href = pages[randomIndex];
+  });
+</script>
+</body>

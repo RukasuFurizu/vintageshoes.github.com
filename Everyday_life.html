@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Everyday Life Shoes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1>Sport Shoes</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Site2.html">Our product</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="produits">
+        <h2>Everyday Life Shoes</h2>
+
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1593032457869-0114a7c6788e" alt="Urban Flex Runner">
+            <h3>Urban Flex Runner</h3>
+            <p>Lightweight and perfect for daily city use.</p>
+            <span>69.99 €</span>
+            <button onclick="addToCart('Urban Flex Runner', 69.99, 'https://images.unsplash.com/photo-1593032457869-0114a7c6788e')">Add to Cart</button>
+        </div>
+
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1620207418302-439b387441b0" alt="Daily Move Low">
+            <h3>Daily Move Low</h3>
+            <p>Everyday comfort with classic style.</p>
+            <span>59.99 €</span>
+            <button onclick="addToCart('Daily Move Low', 59.99, 'https://images.unsplash.com/photo-1620207418302-439b387441b0')">Add to Cart</button>
+        </div>
+
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1519741491051-9e5e7b9f49c5" alt="Metro Sneaker">
+            <h3>Metro Sneaker</h3>
+            <p>Perfect for commuting and errands.</p>
+            <span>74.90 €</span>
+            <button onclick="addToCart('Metro Sneaker', 74.90, 'https://images.unsplash.com/photo-1519741491051-9e5e7b9f49c5')">Add to Cart</button>
+        </div>
+
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1515777315835-281b94c9589b" alt="Casual Walk X">
+            <h3>Casual Walk X</h3>
+            <p>Easy fit for everyday use.</p>
+            <span>62.00 €</span>
+            <button onclick="addToCart('Casual Walk X', 62.00, 'https://images.unsplash.com/photo-1515777315835-281b94c9589b')">Add to Cart</button>
+        </div>
+
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1618354691321-30067dd2295f" alt="Smart Runner Lite">
+            <h3>Smart Runner Lite</h3>
+            <p>Versatile and stylish for daily routines.</p>
+            <span>66.99 €</span>
+            <button onclick="addToCart('Smart Runner Lite', 66.99, 'https://images.unsplash.com/photo-1618354691321-30067dd2295f')">Add to Cart</button>
+        </div>
+
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1618354690339-b4f52a5bdbd6" alt="Comfy Step Everyday">
+            <h3>Comfy Step Everyday</h3>
+            <p>Stability and breathability in one.</p>
+            <span>70.50 €</span>
+            <button onclick="addToCart('Comfy Step Everyday', 70.50, 'https://images.unsplash.com/photo-1618354690339-b4f52a5bdbd6')">Add to Cart</button>
+        </div>
+
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1596464716121-2051bd4b6d8e" alt="Street Ease M1">
+            <h3>Street Ease M1</h3>
+            <p>Made for movement and comfort.</p>
+            <span>63.20 €</span>
+            <button onclick="addToCart('Street Ease M1', 63.20, 'https://images.unsplash.com/photo-1596464716121-2051bd4b6d8e')">Add to Cart</button>
+        </div>
+
+        <div class="produit">
+            <img src="https://images.unsplash.com/photo-1621268128336-54a06c245ba9" alt="Dayride Classic">
+            <h3>Dayride Classic</h3>
+            <p>Durable with a casual urban look.</p>
+            <span>68.00 €</span>
+            <button onclick="addToCart('Dayride Classic', 68.00, 'https://images.unsplash.com/photo-1621268128336-54a06c245ba9')">Add to Cart</button>
+        </div>
+
+    </section>
+</main>
+
+<script>
+function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let existing = cart.find(item => item.name === name);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ name, price, image, quantity: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Added to cart");
+}
+</script>
+</body>
+</html>

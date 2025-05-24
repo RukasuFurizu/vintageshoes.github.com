@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Site de vente de chaussures</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Entête du site -->
+    <header>
+        <div class="logo">
+            <h1>Vintage Shoes</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a id="randomBtn">Our product</a></li>
+                <li><a href="Site7.html">About us</a></li>
+                <li><a href="Site8.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section principale avec des produits -->
+    <main>
+        <section class="discounts">
+            <h2>DISCOUNTS || END IN :</h2>
+            <section class="countdown-timer">
+                <div id="timer">
+                <span id="days" class="time-part">0</span> d
+                <span id="hours" class="time-part">01</span> h
+                <span id="minutes" class="time-part">52</span> m
+                <span id="seconds" class="time-part">29</span> s
+                </div>
+            </section>
+            <ul>
+                <h3>Old Fashion Jordan - 20%</h3>
+                <h3>New balance 574 - 15%</h3>
+                <h3>Skechers work shoes - 50%</h3>
+                <h3>Golden Basket - 10%</h3>
+            </ul>
+        </section>
+        <section class="produits">
+            <h2>Our Shoes</h2>
+            <div class="produit">
+                <img src="nike.jpg" >
+                <h3>Sport</h3>
+                <p>Optimal comfort for your sporting activities</p>
+                <button onclick="window.location.href = 'Site2.html'; ">Discorver</button>
+            </div>
+            <div class="produit">
+                <img src="converse.jpg">
+                <h3>Everyday life</h3>
+                <p>For everyday life or for formal events</p>
+                <button onclick="window.location.href = 'Site5.html'; ">Discorver</button>
+            </div>
+            <div class="produit">
+                <img src="crocs.jpg">
+                <h3>Confort</h3>
+                <p>For home or everyday life</p>
+                <button onclick="window.location.href = 'site6.html'; ">Discorver</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Vintage Shoes - All rights reserved</p>
+    </footer>
+    <script>
+  // Temps total en secondes (0 jours, 1h 52min 29s)
+  let totalSeconds = 1 * 3600 + 52 * 60 + 29;
+
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
+
+  function updateTimer() {
+    if (totalSeconds < 0) {
+      clearInterval(interval);
+      daysEl.textContent = 0;
+      hoursEl.textContent = "00";
+      minutesEl.textContent = "00";
+      secondsEl.textContent = "00";
+      return;
+    }
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    daysEl.textContent = days;
+    hoursEl.textContent = String(hours).padStart(2, '0');
+    minutesEl.textContent = String(minutes).padStart(2, '0');
+    secondsEl.textContent = String(seconds).padStart(2, '0');
+
+    totalSeconds--;
+  }
+
+  updateTimer();
+  const interval = setInterval(updateTimer, 1000);
+</script>
+<script>
+  const pages = ['Site2.html', 'Site5.html', 'Site6.html'];
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * pages.length);
+    window.location.href = pages[randomIndex];
+  });
+</script>
+<div id="cookie-overlay" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(87, 0, 0, 0.85);
+    color: white;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+">
+    <div style="max-width: 600px;">
+        <h2 style="font-size: 28px; margin-bottom: 20px;">Ce site utilise des cookies</h2>
+        <p style="font-size: 18px; margin-bottom: 30px;">
+            Nous utilisons des cookies pour améliorer votre expérience de navigation.
+        </p>
+        <button onclick="acceptCookies()" style="
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: white;
+            color: #570000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        ">
+            J'accepte
+        </button>
+    </div>
+</div>
+<script>
+function acceptCookies() {
+    localStorage.setItem("cookiesAccepted", "1");
+    document.getElementById("cookie-overlay").style.display = "none";
+}
+
+// Vérification dès que la page est prête
+window.addEventListener("DOMContentLoaded", function() {
+    const accepted = localStorage.getItem("cookiesAccepted");
+    if (accepted !== "1") {
+        document.getElementById("cookie-overlay").style.display = "flex";
+    }
+});
+</script>
+
+</body>
+</html>

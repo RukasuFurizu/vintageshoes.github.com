@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site de vente de chaussures</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1>Everyday Life</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a id="randomBtn">Our product</a></li>
+            <li><a href="Site7.html">About us</a></li>
+            <li><a href="Site8.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<nav class="toolbar">
+  <input type="text" placeholder="Search for shoes..." class="search-bar" id="searchInput">
+  <select class="filter" id="categoryFilter">
+    <option value="all">Category</option>
+    <option value="man">Man</option>
+    <option value="women">Women</option>
+    <option value="child">Child</option>
+  </select>
+  &nbsp;&nbsp;
+  <div class="cart">
+    <a href="Cart.html">🛒 Order</a>
+  </div>
+</nav>
+
+<main>
+    <section class="produits">
+        <div class="produit product-card" data-category="women">
+            <img src="Converse_Chuck_Taylor_All_Star.jpg">
+            <h3>Converse Chuck Taylor All Star</h3>
+            <span>89,99 €</span>
+            <button onclick="addToCart('Converse Chuck Taylor All Star', 89.99, 'Converse_Chuck_Taylor_All_Star.jpg')">Add on cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="women">
+            <br><br><br> 
+            <img src="Addidas_Superstar.jpg">
+            <br><br><br>
+            <h3>Addidas Superstar</h3>
+            <span>99,99 €</span>
+            <button onclick="addToCart('Addidas Superstar', 99.99, 'Addidas_Superstar.jpg')">Add on cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="child">
+            <img src="nike_air_force_one.webp">
+            <h3>Nike air force one</h3>
+            <span>129,99 €</span>
+            <button onclick="addToCart('Nike air force one', 129.99, 'nike_air_force_one.webp')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="man">
+            <img src="Puma_suede.jpg">
+            <h3>Puma Suède</h3>
+            <span>59,99 €</span>
+            <button onclick="addToCart('Puma Suède', 59.99, 'Puma_suede.jpg')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+    </section>
+    <section class="produits">
+        <div class="produit product-card" data-category="man">
+            <img src="Reebok_classic_leather.jpg">
+            <h3>Reebok classic leather</h3>
+            <span>119,99 €</span>
+            <button onclick="addToCart('Reebok classic leather', 119.99, 'Reebok_classic_leather.jpg')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="child">
+            <img src="Vans_old_school.jpg">
+            <h3>Vans old school</h3>
+            <span>79,99 €</span>
+            <button onclick="addToCart('Vans old school', 79.99, 'Vans_old_school.jpg')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="man">
+            <br><br>
+            <img src="New_balance_574.webp">
+            <br><br><br>
+            <h3>New balance 574</h3>
+            <span>519,99 € ⮕ 441,99 €</span>
+            <button onclick="addToCart('New balance 574', 441.99, 'New_balance_574.webp')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+        <div class="produit product-card" data-category="child">
+            <img src="Fila_disruptor.jpg">
+            <h3>Fila disruptor</h3>
+            <span>759,99 €</span>
+            <button onclick="addToCart('Fila disruptor', 759.99, 'Fila_disruptor.jpg')">Add to cart</button>
+            <button onclick="window.location.href = 'Site3.html';">Buy</button>
+        </div>
+    </section>
+    <section class="produits">
+        <div>
+            <p>&copy; 2025 Vintage Shoes - All rights reserved</p>
+        </div>     
+    </section>
+</main>
+<script>
+    document.getElementById('searchInput').addEventListener('input', function () {
+        const filter = this.value.toLowerCase();
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            const title = product.querySelector('h3').textContent.toLowerCase();
+            if (title.includes(filter)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    });
+</script>
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const products = document.querySelectorAll('.product-card');
+
+    function filterProducts() { 
+        const searchText = searchInput.value.toLowerCase();
+        const selectedCategory = categoryFilter.value;
+
+        products.forEach(product => {
+            const title = product.querySelector('h3').textContent.toLowerCase();
+            const category = product.dataset.category;
+
+            const matchText = title.includes(searchText);
+            const matchCategory = (selectedCategory === "all" || category === selectedCategory);
+
+            product.style.display = (matchText && matchCategory) ? 'block' : 'none';
+        });
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    categoryFilter.addEventListener('change', filterProducts);
+</script>
+<script>
+    function addToCart(name, price, image) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push({ name, price, image, quantity: 1 });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        window.location.href = "Cart.html";
+    }
+    </script>
+    <script>
+  const pages = ['Site2.html', 'Site5.html', 'Site6.html'];
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * pages.length);
+    window.location.href = pages[randomIndex];
+  });
+</script>
+</body>
+</html>
