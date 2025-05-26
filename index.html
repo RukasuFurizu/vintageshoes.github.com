@@ -145,7 +145,6 @@ function acceptCookies() {
     document.getElementById("cookie-overlay").style.display = "none";
 }
 
-// Vérification dès que la page est prête
 window.addEventListener("DOMContentLoaded", function() {
     const accepted = localStorage.getItem("cookiesAccepted");
     if (accepted !== "1") {
